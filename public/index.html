@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Online Calculator</h2>
+    <input id="expression" placeholder="e.g. 2+2" />
+    <button onclick="calculate()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+      async function calculate() {
+        const expr = document.getElementById("expression").value;
+        const res = await fetch(`/api/calculate?expr=${encodeURIComponent(expr)}`);
+        const data = await res.json();
+        document.getElementById("result").innerText = `Result: ${data.result}`;
+      }
+    </script>
+  </body>
+</html>
